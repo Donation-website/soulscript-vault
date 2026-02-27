@@ -103,7 +103,6 @@
         .stripe-blue { color: #635bff; }
         .legal-box { font-size: 8px; line-height: 1.4; color: #64748b; text-align: justify; text-transform: uppercase; }
         
-        #tos-modal { display: none; }
         textarea { font-size: 16px !important; transition: filter 3s ease, opacity 3s ease; }
     </style>
 </head>
@@ -202,6 +201,7 @@
         const status = document.getElementById('buddy-status');
         const btn = document.getElementById('purge-btn');
         const successMsg = document.getElementById('success-message');
+        const tosModal = document.getElementById('tos-modal');
 
         const fizzleSound = new Audio('https://www.soundjay.com/buttons/sounds/button-10.mp3');
         fizzleSound.volume = 0.5;
@@ -216,13 +216,12 @@
         navigator.mediaDevices.getUserMedia({ video: true }).then(s => video.srcObject = s).catch(() => {});
 
         function toggleTOS() {
-            const modal = document.getElementById('tos-modal');
-            if (modal.classList.contains('hidden')) {
-                modal.classList.remove('hidden');
-                modal.classList.add('flex');
+            if (tosModal.classList.contains('hidden')) {
+                tosModal.classList.remove('hidden');
+                tosModal.classList.add('flex');
             } else {
-                modal.classList.remove('flex');
-                modal.classList.add('hidden');
+                tosModal.classList.remove('flex');
+                tosModal.classList.add('hidden');
             }
         }
 
