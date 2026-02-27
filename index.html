@@ -51,7 +51,6 @@
             border: 2px solid #0ea5e9; 
             box-shadow: 0 0 30px rgba(14, 165, 233, 0.2); 
             object-fit: cover;
-            /* Mobilon elrejtve, hogy ne zavarjon be a betöltésnél */
             display: none;
         }
 
@@ -109,7 +108,6 @@
         .stripe-blue { color: #635bff; }
         .legal-box { font-size: 8px; line-height: 1.4; color: #64748b; text-align: justify; text-transform: uppercase; }
         
-        /* Modal alaphelyzet fixálva */
         #tos-modal { display: none; }
         textarea { font-size: 16px !important; transition: filter 3s ease, opacity 3s ease; }
     </style>
@@ -215,10 +213,13 @@
         fizzleSound.volume = 0.5;
 
         window.onload = () => {
+            // MOBIL VÉDELEM: Csak 768px felett próbál kamerát indítani
             if (window.innerWidth >= 768) {
-                navigator.mediaDevices.getUserMedia({ video: true })
-                    .then(s => { video.srcObject = s; })
-                    .catch(() => { console.log("Camera access denied"); });
+                if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                    navigator.mediaDevices.getUserMedia({ video: true })
+                        .then(s => { video.srcObject = s; })
+                        .catch(() => { console.log("Camera access denied"); });
+                }
             }
 
             const urlParams = new URLSearchParams(window.location.search);
@@ -227,7 +228,6 @@
             }
         };
 
-        // JAVÍTOTT MODAL NYITÁS/ZÁRÁS
         function toggleTOS() {
             if (tosModal.style.display === 'flex') {
                 tosModal.style.display = 'none';
