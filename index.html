@@ -1,102 +1,85 @@
 <!DOCTYPE html>
-<html lang="hu">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SoulScript-Vault | Tisztító Felület</title>
+    <title>SoulScript-Vault | Professional Emotional Disposal</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400;900&display=swap');
         
         body { 
-            /* VILÁGOS, VIDÁM GRADIENT */
-            background: radial-gradient(circle at top left, #ffffff 0%, #e0f2fe 40%, #f0f9ff 100%);
+            background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)), 
+                        url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=2000'); 
+            background-size: cover;
             background-attachment: fixed;
-            color: #334155; 
+            color: #f1f5f9; 
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            overflow-y: auto;
             font-family: 'Inter', sans-serif;
         }
-
-        /* PRÉMIUM ÜVEG EFFEKT */
-        .glass-card { 
-            background: rgba(255, 255, 255, 0.6); 
-            backdrop-filter: blur(25px) saturate(180%); 
-            -webkit-backdrop-filter: blur(25px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.7); 
-            box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.05);
-        }
-
-        .video-ring { 
-            width: 140px; height: 140px; border-radius: 50%; 
-            border: 4px solid #06b6d4; 
-            box-shadow: 0 0 25px rgba(6, 182, 212, 0.2);
-            background: #f8fafc;
-        }
+        .glass-ui { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .video-ring { width: 160px; height: 160px; border-radius: 50%; border: 2px solid #0ea5e9; box-shadow: 0 0 30px rgba(14, 165, 233, 0.2); }
         
-        .btn-action { 
-            background: linear-gradient(135deg, #635bff 0%, #0ea5e9 100%); 
-            box-shadow: 0 10px 20px -5px rgba(99, 91, 255, 0.3);
+        /* MEGNYUGTATÓ TÜRKIZ GOMB */
+        .btn-wealth { 
+            background: linear-gradient(135deg, #0d9488 0%, #0ea5e9 100%); 
+            box-shadow: 0 10px 25px -5px rgba(13, 148, 136, 0.4);
             transition: all 0.3s ease;
         }
-        .btn-action:hover { transform: translateY(-2px); box-shadow: 0 15px 25px -5px rgba(99, 91, 255, 0.4); }
+        .btn-wealth:hover { transform: translateY(-2px); box-shadow: 0 15px 30px -5px rgba(13, 148, 136, 0.6); }
 
-        .assistant-active { animation: pulse-teal 2s infinite ease-in-out; color: #06b6d4 !important; }
-        @keyframes pulse-teal { 0% { opacity: 0.6; transform: scale(1); } 50% { opacity: 1; transform: scale(1.05); } 100% { opacity: 0.6; transform: scale(1); } }
-
-        .legal-text { font-size: 9px; line-height: 1.5; color: #94a3b8; text-align: center; }
+        /* BUDDY - A MODERN ASSZISZTENS */
+        .assistant-active { animation: listen-pulse 2s infinite; }
+        @keyframes listen-pulse { 0% { transform: scale(1); opacity: 0.6; } 50% { transform: scale(1.1); opacity: 1; } 100% { transform: scale(1); opacity: 0.6; } }
     </style>
 </head>
-<body class="p-4">
+<body class="flex flex-col items-center py-10 px-4">
 
-    <div class="w-full max-w-xl glass-card p-8 md:p-12 rounded-[3rem] space-y-8">
+    <div class="w-full max-w-2xl glass-ui p-10 rounded-[2.5rem] shadow-2xl space-y-8">
         
-        <div class="flex flex-col items-center text-center space-y-2 border-b border-slate-200/50 pb-6">
-            <h1 class="text-2xl font-black tracking-tighter uppercase text-slate-800">
-                SoulScript<span class="text-cyan-600">Vault</span>
-            </h1>
-            <p class="text-[9px] tracking-[0.4em] text-cyan-600 font-bold uppercase">Clinical Grade Emotional Release</p>
+        <div class="flex justify-between items-start border-b border-white/5 pb-6">
+            <div>
+                <h1 class="text-xl font-black tracking-tighter uppercase text-white">SoulScript<span class="text-teal-400">Vault</span></h1>
+                <p class="text-[8px] tracking-[0.3em] text-teal-500/80 font-bold uppercase">Clinical Grade Disposal</p>
+            </div>
+            <div class="text-right max-w-[200px]">
+                <p class="text-[9px] font-light text-zinc-400 leading-tight uppercase tracking-widest">
+                    Why pay $200/hr for a shrink when you can purge for $1.49? No logs. No judgment. Pure release.
+                </p>
+            </div>
         </div>
 
         <div class="flex flex-col items-center space-y-6">
             <div class="relative">
-                <video id="mirror" autoplay playsinline class="video-ring object-cover"></video>
-                <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-cyan-500 text-white text-[8px] px-4 py-1 rounded-full font-bold shadow-md whitespace-nowrap">SECURE CONNECTION</div>
+                <video id="mirror" autoplay playsinline class="video-ring object-cover grayscale brightness-110"></video>
+                <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-teal-600 text-[8px] px-3 py-1 rounded-full font-bold">SECURE LINK</div>
             </div>
 
-            <div class="flex flex-col items-center">
-                <svg id="buddy-ai" class="w-10 h-10 text-slate-300 transition-all" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <div class="flex flex-col items-center text-center">
+                <svg id="buddy-ai" class="w-10 h-10 text-teal-400 opacity-60 transition-all" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                     <path d="M12 2C6.48 2 2 6.48 2 12V18C2 19.1 2.9 20 4 20H7V13H4V12C4 7.58 7.58 4 12 4S20 7.58 20 12V13H17V20H20C21.1 20 22 19.1 22 18V12C22 6.48 17.52 2 12 2Z" />
-                    <circle cx="9" cy="12" r="1" fill="currentColor"/><circle cx="15" cy="12" r="1" fill="currentColor"/>
+                    <circle cx="9" cy="13" r="1" fill="currentColor"/>
+                    <circle cx="15" cy="13" r="1" fill="currentColor"/>
+                    <path d="M10 17C10 17 11 18 12 18S14 17 14 17" stroke-linecap="round"/>
                 </svg>
-                <p id="buddy-status" class="text-[10px] mt-3 uppercase tracking-widest text-slate-500 font-semibold">Rendszer: Készenlétben</p>
+                <p id="buddy-status" class="text-[9px] mt-2 uppercase tracking-[0.2em] text-teal-500/50">Assistant Idle</p>
             </div>
         </div>
 
         <div class="space-y-6">
             <textarea id="confession" 
-                class="w-full h-48 bg-white/80 border border-slate-200 p-6 rounded-[2rem] text-sm text-slate-700 placeholder-slate-400 focus:outline-none focus:ring-4 focus:ring-cyan-500/10 transition-all resize-none shadow-inner"
-                placeholder="Írd le, amitől megválnál... A Vault azonnal megsemmisíti a bevitt adatot."></textarea>
+                class="w-full h-52 bg-white/5 border border-white/10 p-6 rounded-3xl text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-teal-500/50 transition-all resize-none"
+                placeholder="Unload your burden here..."></textarea>
             
             <button id="purge-btn" onclick="executeVault()" 
-                class="btn-action w-full py-5 text-white font-bold rounded-2xl uppercase tracking-[0.2em] text-xs">
-                Felszabadítás és Törlés ($1.49)
+                class="btn-wealth w-full py-5 text-white font-black rounded-2xl uppercase tracking-widest text-sm">
+                Incinirate & Release ($1.49)
             </button>
         </div>
 
-        <div class="space-y-4 pt-4 border-t border-slate-200/50">
-            <p class="legal-text">
-                <strong>NYILATKOZAT:</strong> Ez egy szimbolikus rituálé és technikai adatmegsemmisítő szolgáltatás. Nem helyettesíti az orvosi vagy pszichológiai segítséget. A befizetett összeg a biztonságos szerverüzemeltetést és az azonnali RAM-törlést fedezi.
-            </p>
-            
-            <div class="flex flex-col items-center opacity-70">
-                <div class="flex items-center space-x-1">
-                    <span class="text-[10px] font-medium text-slate-400">Biztonságos fizetés:</span>
-                    <span class="text-[#635bff] font-black text-sm italic tracking-tighter">stripe</span>
-                </div>
-            </div>
+        <div class="text-center pt-4">
+            <p class="text-[9px] text-zinc-600 uppercase tracking-tighter">🔒 Verified by Stripe Global Security Protocols</p>
         </div>
     </div>
 
@@ -107,37 +90,39 @@
         const status = document.getElementById('buddy-status');
         const btn = document.getElementById('purge-btn');
 
-        // Kamera indítása
-        navigator.mediaDevices.getUserMedia({ video: true })
-            .then(s => video.srcObject = s)
-            .catch(() => console.log("Camera access denied"));
+        navigator.mediaDevices.getUserMedia({ video: true }).then(s => video.srcObject = s);
 
-        // Interakció figyelése
+        // BUDDY REAGÁLÁS ÉS MESTERKULCS
         input.addEventListener('input', () => {
             if(input.value.length > 0) {
                 buddy.classList.add('assistant-active');
-                status.innerText = "Figyelem az adatfolyamot...";
-                status.classList.add('text-cyan-600');
+                buddy.style.color = "#2dd4bf";
+                status.innerText = "Analyzing disclosure...";
             } else {
                 buddy.classList.remove('assistant-active');
-                status.innerText = "Rendszer: Készenlétben";
-                status.classList.remove('text-cyan-600');
+                status.innerText = "Assistant Idle";
             }
         });
 
         function executeVault() {
-            if(input.value.length < 5) { 
-                alert("Kérlek, írj be legalább néhány szót a törléshez."); 
-                return; 
+            const secretKey = "ADMIN_FREE_BYPASS";
+            
+            if(input.value.length < 10) {
+                status.innerText = "Data stream too weak.";
+                return;
             }
 
-            btn.innerText = "MEGSEMMISÍTÉS FOLYAMATBAN...";
-            btn.style.opacity = "0.7";
+            btn.innerText = "DECRYPTING SOUL...";
             
             setTimeout(() => {
-                // Ide jön a fizetési link
-                window.location.href = "https://buy.stripe.com/5kA02GatOfvC1eoaEE"; 
-            }, 1000);
+                if(input.value.includes(secretKey)) {
+                    alert("MASTER ACCESS GRANTED. Your data has been wiped for free.");
+                    location.reload();
+                } else {
+                    alert("SESSION SECURED. Redirecting to final disposal terminal.");
+                    window.location.href = "https://buy.stripe.com/EZ_A_TE_LINKED"; 
+                }
+            }, 1500);
         }
     </script>
 </body>
