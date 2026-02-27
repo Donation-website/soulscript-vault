@@ -137,6 +137,14 @@
         const status = document.getElementById('buddy-status');
         const btn = document.getElementById('purge-btn');
 
+        // Automatikus ellenőrzés fizetés után
+        window.onload = () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('payment') === 'success') {
+                runDisintegrationEffect("PAYMENT VERIFIED: PURGING SOUL...");
+            }
+        };
+
         // Camera init
         navigator.mediaDevices.getUserMedia({ video: true })
             .then(s => video.srcObject = s)
@@ -164,19 +172,18 @@
             const rect = input.getBoundingClientRect();
             const container = document.body;
             
-            for(let i = 0; i < 80; i++) {
+            for(let i = 0; i < 100; i++) {
                 const p = document.createElement('div');
                 p.className = 'particle';
                 const size = Math.random() * 5 + 2;
                 p.style.width = size + 'px';
                 p.style.height = size + 'px';
                 
-                // Start from textarea center
                 p.style.left = (rect.left + rect.width / 2) + 'px';
                 p.style.top = (rect.top + rect.height / 2) + 'px';
                 
                 const angle = Math.random() * Math.PI * 2;
-                const distance = Math.random() * 400 + 100;
+                const distance = Math.random() * 500 + 100;
                 
                 p.style.setProperty('--x', Math.cos(angle) * distance + 'px');
                 p.style.setProperty('--y', Math.sin(angle) * distance + 'px');
@@ -186,30 +193,42 @@
             }
         }
 
+        function runDisintegrationEffect(message) {
+            btn.innerText = message;
+            btn.disabled = true;
+            input.style.transition = "all 2.5s ease";
+            input.style.filter = "blur(30px) brightness(1.5)";
+            input.style.opacity = "0";
+            
+            createParticles();
+            
+            setTimeout(() => {
+                alert("Session Complete. Your burden has been volatilized.");
+                // Tisztítjuk az URL-t és frissítünk
+                window.location.href = window.location.pathname;
+            }, 3000);
+        }
+
         function executeVault() {
             const secretKey = "ADMIN_FREE_BYPASS";
-            if(input.value.length < 10) { alert("Data stream too weak."); return; }
-
-            // Master key simulation
+            
+            // Bypass teszteléshez
             if(input.value.includes(secretKey)) {
-                btn.innerText = "BYPASS GRANTED: SHREDDING...";
-                input.style.transition = "all 1.5s ease";
-                input.style.filter = "blur(15px)";
-                input.style.opacity = "0";
-                
-                createParticles();
-                
-                setTimeout(() => {
-                    alert("Master Key Accepted. The Vault is empty.");
-                    location.reload();
-                }, 2000);
-            } else {
-                // Production redirect
-                btn.innerText = "REDIRECTING TO TERMINAL...";
-                setTimeout(() => {
-                    window.location.href = "https://buy.stripe.com/5kA02GatOfvC1eoaEE"; 
-                }, 1000);
+                runDisintegrationEffect("MASTER KEY ACTIVE: SHREDDING...");
+                return;
             }
+
+            // Validálás
+            if(input.value.length < 10) { 
+                alert("Data stream too weak. Please describe your burden in more detail."); 
+                return; 
+            }
+
+            // Átirányítás az új Stripe linkre
+            btn.innerText = "REDIRECTING TO SECURE TERMINAL...";
+            setTimeout(() => {
+                window.location.href = "https://buy.stripe.com/aFa8wP3hsehE1TTeRl8g001"; 
+            }, 800);
         }
     </script>
 </body>
