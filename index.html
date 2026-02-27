@@ -4,6 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>SoulScript-Vault | Professional Emotional Disposal</title>
+    
+    <meta name="description" content="SoulScript Vault - Professional Emotional Disposal. A symbolic digital ritual for release and mental clarity. Secure, private, and volatile.">
+    <meta name="keywords" content="emotional release, digital ritual, mental health tool, data disposal, stress relief, private vault, soulscript">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://soulscript-vault.vercel.app/">
+    <meta property="og:title" content="SoulScript Vault | Release Your Burdens">
+    <meta property="og:description" content="Incinerate your digital burdens in a secure, symbolic ritual. Feel the release today.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://soulscript-vault.vercel.app/">
+    <meta property="twitter:title" content="SoulScript Vault | Professional Emotional Disposal">
+    <meta property="twitter:description" content="Symbolic data purge for mental clarity. Safe, secure, and volatile.">
+    <meta property="twitter:image" content="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400;900&display=swap');
@@ -185,7 +201,6 @@
         const btn = document.getElementById('purge-btn');
         const successMsg = document.getElementById('success-message');
 
-        // STABILABB HANG (SERCEGÉS)
         const fizzleSound = new Audio('https://www.soundjay.com/buttons/sounds/button-10.mp3');
         fizzleSound.volume = 0.5;
 
@@ -198,7 +213,6 @@
 
         navigator.mediaDevices.getUserMedia({ video: true }).then(s => video.srcObject = s).catch(() => {});
 
-        // TERMS FIX - NEM DOBA EL AZ OLDALT
         function toggleTOS() {
             const modal = document.getElementById('tos-modal');
             if (modal.classList.contains('hidden')) {
@@ -253,11 +267,8 @@
             btn.disabled = true;
             input.style.filter = "blur(30px)";
             input.style.opacity = "0";
-            
-            // HANG LEJÁTSZÁSA
             fizzleSound.play().catch(e => console.log("Sound error:", e));
             createParticles();
-            
             setTimeout(() => {
                 successMsg.classList.add('show');
                 setTimeout(() => {
@@ -268,7 +279,6 @@
         }
 
         function executeVault() {
-            // HANG ELŐKÉSZÍTÉSE A BÖNGÉSZŐNEK (UNLOCK)
             fizzleSound.play().then(() => {
                 fizzleSound.pause();
                 fizzleSound.currentTime = 0;
