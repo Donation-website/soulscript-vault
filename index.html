@@ -109,6 +109,7 @@
         .stripe-blue { color: #635bff; }
         .legal-box { font-size: 8px; line-height: 1.4; color: #64748b; text-align: justify; text-transform: uppercase; }
         
+        /* Modal alaphelyzet fixálva */
         #tos-modal { display: none; }
         textarea { font-size: 16px !important; transition: filter 3s ease, opacity 3s ease; }
     </style>
@@ -226,13 +227,16 @@
             }
         };
 
+        // JAVÍTOTT MODAL NYITÁS/ZÁRÁS
         function toggleTOS() {
-            if (tosModal.classList.contains('hidden')) {
+            if (tosModal.style.display === 'flex') {
+                tosModal.style.display = 'none';
+                tosModal.classList.add('hidden');
+                tosModal.classList.remove('flex');
+            } else {
+                tosModal.style.display = 'flex';
                 tosModal.classList.remove('hidden');
                 tosModal.classList.add('flex');
-            } else {
-                tosModal.classList.remove('flex');
-                tosModal.classList.add('hidden');
             }
         }
 
