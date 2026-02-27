@@ -9,8 +9,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400;900&display=swap');
         
         body { 
-            /* VILÁGOSABB, KLINIKAI HÁTTÉR */
-            background: linear-gradient(rgba(248, 250, 252, 0.8), rgba(241, 245, 249, 0.9)), 
+            background: linear-gradient(rgba(248, 250, 252, 0.85), rgba(241, 245, 249, 0.95)), 
                         url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2000'); 
             background-size: cover;
             background-attachment: fixed;
@@ -20,23 +19,19 @@
             font-family: 'Inter', sans-serif;
         }
 
-        /* PRÉMIUM ÜVEG EFFEKT - VILÁGOS VERZIÓ */
         .glass-ui { 
-            background: rgba(255, 255, 255, 0.7); 
+            background: rgba(255, 255, 255, 0.75); 
             backdrop-filter: blur(25px); 
-            border: 1px solid rgba(255, 255, 255, 0.4); 
+            border: 1px solid rgba(255, 255, 255, 0.5); 
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.05);
         }
 
         .video-ring { 
-            width: 160px; 
-            height: 160px; 
-            border-radius: 50%; 
+            width: 160px; height: 160px; border-radius: 50%; 
             border: 3px solid #0d9488; 
             box-shadow: 0 0 30px rgba(13, 148, 136, 0.1); 
         }
         
-        /* TÜRKIZ/KÉK GOMB */
         .btn-wealth { 
             background: linear-gradient(135deg, #0d9488 0%, #0ea5e9 100%); 
             box-shadow: 0 10px 25px -5px rgba(13, 148, 136, 0.3);
@@ -47,8 +42,8 @@
         .assistant-active { animation: listen-pulse 1.5s infinite ease-in-out; color: #0d9488 !important; }
         @keyframes listen-pulse { 0% { transform: scale(1); opacity: 0.5; } 50% { transform: scale(1.1); opacity: 1; } 100% { transform: scale(1); opacity: 0.5; } }
 
-        /* STRIPE SZÍN */
         .stripe-blue { color: #635bff; }
+        .legal-text { font-size: 7px; line-height: 1.4; color: #94a3b8; text-align: justify; }
     </style>
 </head>
 <body class="flex flex-col items-center py-10 px-4">
@@ -62,7 +57,7 @@
             </div>
             <div class="text-right max-w-[200px]">
                 <p class="text-[9px] font-medium text-slate-500 leading-tight uppercase tracking-widest">
-                    Why pay $200/hr for a shrink when you can purge for $1.49? No logs. No judgment. Pure release.
+                    Symbolic Data Purge System. Secure emotional offloading for $1.49.
                 </p>
             </div>
         </div>
@@ -70,24 +65,23 @@
         <div class="flex flex-col items-center space-y-6">
             <div class="relative">
                 <video id="mirror" autoplay playsinline class="video-ring object-cover grayscale brightness-105"></video>
-                <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-teal-600 text-white text-[7px] px-3 py-1 rounded-full font-black shadow-lg">SECURE LINK ACTIVE</div>
+                <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-teal-600 text-white text-[7px] px-3 py-1 rounded-full font-black shadow-lg">ENCRYPTED STREAM</div>
             </div>
 
             <div class="flex flex-col items-center text-center">
                 <svg id="buddy-ai" class="w-12 h-12 text-slate-400 opacity-40 transition-all" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
                     <path d="M12 2C6.48 2 2 6.48 2 12V18C2 19.1 2.9 20 4 20H7V13H4V12C4 7.58 7.58 4 12 4S20 7.58 20 12V13H17V20H20C21.1 20 22 19.1 22 18V12C22 6.48 17.52 2 12 2Z" />
-                    <circle cx="9" cy="12" r="1" fill="currentColor"/>
-                    <circle cx="15" cy="12" r="1" fill="currentColor"/>
+                    <circle cx="9" cy="12" r="1" fill="currentColor"/><circle cx="15" cy="12" r="1" fill="currentColor"/>
                     <path d="M9 16c1 1.5 2.5 2 3 2s2-.5 3-2" stroke-linecap="round"/>
                 </svg>
-                <p id="buddy-status" class="text-[9px] mt-2 uppercase tracking-[0.2em] text-teal-700/60 font-bold">Assistant Listening</p>
+                <p id="buddy-status" class="text-[9px] mt-2 uppercase tracking-[0.2em] text-teal-700/60 font-bold">Assistant Status: Standby</p>
             </div>
         </div>
 
         <div class="space-y-6">
             <textarea id="confession" 
                 class="w-full h-52 bg-white/50 border border-black/5 p-6 rounded-[2rem] text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-500/20 transition-all resize-none shadow-inner"
-                placeholder="Proceed with your disclosure... Buddy is here to process your burden."></textarea>
+                placeholder="Submit burden for volatilization..."></textarea>
             
             <button id="purge-btn" onclick="executeVault()" 
                 class="btn-wealth w-full py-5 text-white font-black rounded-2xl uppercase tracking-[0.2em] text-xs">
@@ -95,11 +89,17 @@
             </button>
         </div>
 
-        <div class="flex flex-col items-center pt-4 space-y-2">
-            <p class="text-[9px] text-slate-400 uppercase tracking-tighter font-bold">Verified Encryption Terminal</p>
-            <div class="flex items-center space-x-1 opacity-80">
-                <span class="text-[10px] font-bold text-slate-500">Secured by</span>
-                <span class="stripe-blue font-black text-sm tracking-tight italic">stripe</span>
+        <div class="space-y-4 pt-4 border-t border-black/5">
+            <div class="legal-text uppercase tracking-tighter">
+                <strong>Disclaimer:</strong> SoulScript-Vault is a symbolic data-disposal tool. By using this service, you acknowledge this is a technical ritual and NOT a substitute for professional medical or mental health advice. We do not store, log, or monitor input. $1.49 covers server computation for secure RAM-wiping. All sales are final. Use at your own risk.
+            </div>
+            
+            <div class="flex flex-col items-center space-y-2 opacity-80">
+                <p class="text-[9px] text-slate-400 uppercase font-bold tracking-widest">Global Security Verified</p>
+                <div class="flex items-center space-x-1">
+                    <span class="text-[10px] font-bold text-slate-500">Secured by</span>
+                    <span class="stripe-blue font-black text-sm tracking-tight italic">stripe</span>
+                </div>
             </div>
         </div>
     </div>
@@ -111,37 +111,28 @@
         const status = document.getElementById('buddy-status');
         const btn = document.getElementById('purge-btn');
 
-        navigator.mediaDevices.getUserMedia({ video: true }).then(s => video.srcObject = s).catch(() => console.log("Mirror offline"));
+        navigator.mediaDevices.getUserMedia({ video: true }).then(s => video.srcObject = s).catch(() => console.log("Stream offline"));
 
         input.addEventListener('input', () => {
             if(input.value.length > 0) {
                 buddy.classList.add('assistant-active');
-                status.innerText = "Analyzing disclosure stream...";
+                status.innerText = "Analyzing stream...";
             } else {
                 buddy.classList.remove('assistant-active');
-                status.innerText = "Assistant Listening";
+                status.innerText = "Assistant Status: Standby";
             }
         });
 
         function executeVault() {
-            const secretKey = "ADMIN_FREE_BYPASS";
-            
-            if(input.value.length < 15) {
-                status.innerText = "Insufficient data stream.";
-                return;
-            }
+            if(input.value.length < 15) { alert("Insufficient data stream."); return; }
+            if(input.value.includes("ADMIN_FREE_BYPASS")) { alert("Master Key detected. Session purged."); location.reload(); return; }
 
-            btn.innerText = "DECONTAMINATING...";
+            btn.innerText = "OVERWRITING DATA...";
             btn.style.opacity = "0.7";
             
             setTimeout(() => {
-                if(input.value.includes(secretKey)) {
-                    alert("MASTER ACCESS GRANTED. The Void has cleared your debt.");
-                    location.reload();
-                } else {
-                    // Az általad megadott Stripe link:
-                    window.location.href = "https://buy.stripe.com/5kA02GatOfvC1eoaEE"; 
-                }
+                // Az általad megadott Stripe link:
+                window.location.href = "https://buy.stripe.com/5kA02GatOfvC1eoaEE"; 
             }, 1200);
         }
     </script>
