@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoulScript-Vault | Global Anonymous Confessional</title>
+    
+    <meta name="description" content="Official SoulScript-Vault. Why pay $200 for therapy? Purge your soul, erase your secrets, and cleanse your karma for $1.49. No data logs. Total oblivion.">
+    <meta name="keywords" content="anonymous confession, digital therapy, karma cleansing, stress relief, soul purge, burn secrets, private venting, mental detox, void talk">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background: radial-gradient(circle, #0a0a10 0%, #000000 100%); color: #a78bfa; height: 100vh; overflow: hidden; font-family: 'Courier New', Courier, monospace; }
+        .video-container { width: 220px; height: 220px; border-radius: 50%; overflow: hidden; border: 2px solid #7c3aed; box-shadow: 0 0 30px rgba(124, 58, 237, 0.4); transform: scaleX(-1); }
+        .glitch-text { animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+        .purge-effect { animation: burn 1.5s forwards; }
+        @keyframes burn { 
+            0% { filter: brightness(1) blur(0); transform: scale(1); }
+            50% { filter: brightness(3) blur(5px); transform: scale(1.1); }
+            100% { filter: brightness(0) blur(20px); transform: scale(0); opacity: 0; }
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-between py-10 px-4">
+
+    <div class="text-center space-y-2">
+        <h1 class="text-4xl font-black tracking-[0.3em] uppercase glitch-text text-white">SoulScript-Vault</h1>
+        <p class="text-xs tracking-widest text-purple-400">ENCRYPTED // NON-CUSTODIAL // VOLATILE</p>
+    </div>
+
+    <div id="app-interface" class="w-full max-w-lg flex flex-col items-center space-y-6">
+        
+        <div class="video-container bg-gray-900 flex items-center justify-center">
+            <video id="mirror" autoplay playsinline class="w-full h-full object-cover"></video>
+        </div>
+
+        <div class="text-center">
+            <p class="text-sm italic text-gray-500">"Look into your soul. The Void does not judge."</p>
+        </div>
+
+        <textarea id="soul-input" 
+            class="w-full h-48 bg-black/40 border border-purple-900/30 p-6 rounded-2xl focus:outline-none focus:border-purple-500 text-white placeholder-gray-800 transition-all shadow-inner"
+            placeholder="Write your darkest thoughts here... what is eating you alive?"></textarea>
+
+        <button id="purge-button" onclick="initiatePurge()" 
+            class="w-full py-5 bg-white text-black font-black rounded-full hover:bg-purple-500 hover:text-white transition-all transform active:scale-95 shadow-[0_0_20px_rgba(255,255,255,0.3)] uppercase">
+            PURGE SOUL & CLEAR KARMA ($1.49)
+        </button>
+    </div>
+
+    <div class="text-[10px] text-gray-700 text-center max-w-xs uppercase tracking-tighter">
+        By using SSV, you agree that your data is instantly destroyed. No recovery possible. $1.49 per session. Therapy is expensive, oblivion is cheap.
+    </div>
+
+    <script>
+        // CAMERA ACCESS
+        const video = document.getElementById('mirror');
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(stream => { video.srcObject = stream; })
+                .catch(err => { console.log("Camera blocked - using shadow mode."); });
+        }
+
+        // PURGE LOGIC
+        function initiatePurge() {
+            const input = document.getElementById('soul-input');
+            const btn = document.getElementById('purge-button');
+            const interface = document.getElementById('app-interface');
+
+            if (input.value.length < 10) {
+                alert("The Vault requires a deeper confession.");
+                return;
+            }
+
+            // Visual destruction
+            btn.disabled = true;
+            btn.innerHTML = "OBLITERATING DATA...";
+            input.classList.add('purge-effect');
+
+            setTimeout(() => {
+                // REDIRECT TO STRIPE
+                // Itt cseréld le az URL-t a te Stripe linkedre!
+                window.location.href = "https://buy.stripe.com/test_6oE7t87S9_CSINALJ_EGY_LINKET"; 
+            }, 1400);
+        }
+    </script>
+
+</body>
+</html>
