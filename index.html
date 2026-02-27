@@ -2,36 +2,54 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>SoulScript-Vault | Professional Emotional Disposal</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400;900&display=swap');
         
         body { 
-            background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)), 
+            background: linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.95)), 
                         url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=2000'); 
             background-size: cover;
             background-attachment: fixed;
             color: #f1f5f9; 
             min-height: 100vh;
-            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             font-family: 'Inter', sans-serif;
+            padding: 20px 16px;
         }
-        .glass-ui { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .video-ring { width: 160px; height: 160px; border-radius: 50%; border: 2px solid #0ea5e9; box-shadow: 0 0 30px rgba(14, 165, 233, 0.2); }
+
+        .glass-ui { 
+            background: rgba(255, 255, 255, 0.03); 
+            backdrop-filter: blur(20px); 
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+        }
+
+        .video-ring { 
+            width: 130px; height: 130px; 
+            border-radius: 50%; 
+            border: 2px solid #0ea5e9; 
+            box-shadow: 0 0 30px rgba(14, 165, 233, 0.2); 
+        }
+
+        @media (min-width: 768px) {
+            .video-ring { width: 160px; height: 160px; }
+        }
         
         .btn-wealth { 
             background: linear-gradient(135deg, #635bff 0%, #0ea5e9 100%); 
             box-shadow: 0 10px 25px -5px rgba(99, 91, 255, 0.4);
             transition: all 0.3s ease;
+            touch-action: manipulation;
         }
-        .btn-wealth:hover { transform: translateY(-2px); box-shadow: 0 15px 30px -5px rgba(99, 91, 255, 0.6); }
 
         .assistant-active { animation: listen-pulse 2s infinite; }
         @keyframes listen-pulse { 0% { transform: scale(1); opacity: 0.6; } 50% { transform: scale(1.1); opacity: 1; } 100% { transform: scale(1); opacity: 0.6; } }
 
-        /* PARTICLE EFFECT */
         .particle {
             position: absolute;
             pointer-events: none;
@@ -45,88 +63,105 @@
             100% { transform: translate(var(--x), var(--y)); opacity: 0; }
         }
 
+        #success-message {
+            position: fixed;
+            bottom: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(13, 148, 136, 0.95);
+            color: white;
+            padding: 16px 24px;
+            border-radius: 20px;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: bold;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            z-index: 200;
+            transition: bottom 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+        }
+        #success-message.show { bottom: 40px; }
+
         .stripe-blue { color: #635bff; }
-        .legal-box { font-size: 8px; line-height: 1.4; color: #64748b; text-align: justify; text-transform: uppercase; }
+        .legal-box { font-size: 9px; line-height: 1.4; color: #64748b; text-align: center; text-transform: uppercase; }
         
-        #tos-modal { display: none; }
+        textarea { font-size: 16px !important; } /* Megakadályozza az iOS automatikus zoomolást */
     </style>
 </head>
-<body class="flex flex-col items-center py-10 px-4">
+<body>
 
-    <div class="w-full max-w-2xl glass-ui p-10 rounded-[2.5rem] shadow-2xl space-y-8 relative">
+    <div id="success-message">
+        Ritual Complete. Your data is now volatile. Feel the release.
+    </div>
+
+    <div class="w-full max-w-2xl glass-ui p-6 md:p-10 rounded-[2rem] md:rounded-[2.5rem] shadow-2xl space-y-6 md:space-y-8 relative">
         
-        <div class="flex justify-between items-start border-b border-white/5 pb-6">
-            <div>
+        <div class="flex flex-col md:flex-row justify-between items-center border-b border-white/5 pb-6 gap-4">
+            <div class="text-center md:text-left">
                 <h1 class="text-xl font-black tracking-tighter uppercase text-white">SoulScript<span class="text-teal-400">Vault</span></h1>
                 <p class="text-[8px] tracking-[0.3em] text-teal-500/80 font-bold uppercase">Clinical Grade Disposal</p>
             </div>
-            <div class="text-right max-w-[200px]">
+            <div class="text-center md:text-right max-w-[250px]">
                 <p class="text-[9px] font-light text-zinc-400 leading-tight uppercase tracking-widest">
-                    Symbolic Data Purge System. 1 session = $1.49. No logs. Pure release.
+                    Symbolic Data Purge. $1.49 / Session. No logs.
                 </p>
             </div>
         </div>
 
-        <div class="text-center space-y-2">
-            <h2 class="text-xs font-bold uppercase tracking-[0.2em] text-teal-400">How it works</h2>
-            <p class="text-[10px] text-zinc-400 leading-relaxed italic px-4">
-                Describe your burdens, pain, or secrets below. Upon secure processing, the system will visually and technically disintegrate your data from RAM. This digital ritual is designed to help you let go.
-            </p>
-        </div>
-
         <div class="flex flex-col items-center space-y-6">
             <div class="relative">
-                <video id="mirror" autoplay playsinline class="video-ring object-cover grayscale brightness-110"></video>
-                <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-teal-600 text-[8px] px-3 py-1 rounded-full font-bold shadow-lg">SECURE LINK</div>
+                <video id="mirror" autoplay playsinline muted class="video-ring object-cover grayscale brightness-110"></video>
+                <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-teal-600 text-[8px] px-3 py-1 rounded-full font-bold shadow-lg">SECURE LINK</div>
             </div>
 
             <div class="flex flex-col items-center text-center">
-                <svg id="buddy-ai" class="w-10 h-10 text-teal-400 opacity-60 transition-all" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <svg id="buddy-ai" class="w-8 h-8 md:w-10 md:h-10 text-teal-400 opacity-60 transition-all" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                     <path d="M12 2C6.48 2 2 6.48 2 12V18C2 19.1 2.9 20 4 20H7V13H4V12C4 7.58 7.58 4 12 4S20 7.58 20 12V13H17V20H20C21.1 20 22 19.1 22 18V12C22 6.48 17.52 2 12 2Z" />
                     <circle cx="9" cy="13" r="1" fill="currentColor"/><circle cx="15" cy="13" r="1" fill="currentColor"/>
                     <path d="M10 17C10 17 11 18 12 18S14 17 14 17" stroke-linecap="round"/>
                 </svg>
-                <p id="buddy-status" class="text-[9px] mt-2 uppercase tracking-[0.2em] text-teal-500/50">Assistant Idle</p>
+                <p id="buddy-status" class="text-[8px] mt-2 uppercase tracking-[0.2em] text-teal-500/50">Assistant Idle</p>
             </div>
         </div>
 
-        <div id="input-container" class="space-y-6 relative">
+        <div id="input-container" class="space-y-4 md:space-y-6 relative">
             <textarea id="confession" 
-                class="w-full h-52 bg-white/5 border border-white/10 p-6 rounded-3xl text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-teal-500/50 transition-all resize-none"
+                class="w-full h-40 md:h-52 bg-white/5 border border-white/10 p-5 rounded-2xl text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-teal-500/50 transition-all resize-none"
                 placeholder="Unload your burden here..."></textarea>
             
             <button id="purge-btn" onclick="executeVault()" 
-                class="btn-wealth w-full py-5 text-white font-black rounded-2xl uppercase tracking-widest text-sm">
+                class="btn-wealth w-full py-4 md:py-5 text-white font-black rounded-xl md:rounded-2xl uppercase tracking-widest text-xs md:text-sm">
                 Incinerate & Release ($1.49)
             </button>
         </div>
 
         <div class="space-y-4 pt-4 border-t border-white/5">
             <div class="legal-box">
-                <strong>Disclaimer:</strong> SoulScript-Vault is a symbolic technical disposal tool. $1.49 grants access to ONE (1) disposal session. All sales are final. No professional medical advice provided. <a href="#" onclick="toggleTOS()" class="text-teal-500 underline lowercase">View Terms of Service</a>.
+                SoulScript-Vault is a symbolic technical disposal tool. $1.49 / session. No medical advice. <a href="#" onclick="toggleTOS()" class="text-teal-500 underline lowercase">Terms</a>.
             </div>
             
             <div class="flex flex-col items-center space-y-1.5 opacity-80">
-                <p class="text-[9px] text-zinc-500 uppercase font-bold tracking-widest">Global Security</p>
                 <div class="flex items-center space-x-1">
-                    <span class="text-[10px] font-bold text-zinc-400">Verified by</span>
-                    <span class="stripe-blue font-black text-sm tracking-tight italic">stripe</span>
+                    <span class="text-[9px] font-bold text-zinc-400">Verified by</span>
+                    <span class="stripe-blue font-black text-xs tracking-tight italic">stripe</span>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="tos-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-6">
-        <div class="bg-zinc-900 border border-white/10 p-8 rounded-3xl max-w-lg space-y-4 shadow-2xl">
+    <div id="tos-modal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-[300] hidden items-center justify-center p-6">
+        <div class="bg-zinc-900 border border-white/10 p-6 md:p-8 rounded-3xl max-w-lg space-y-4">
             <h3 class="text-white font-black uppercase text-sm">Terms of Service</h3>
             <div class="text-[10px] text-zinc-400 space-y-3 overflow-y-auto max-h-60 pr-2">
-                <p>1. SoulScript-Vault provides a symbolic digital ritual. It is not a medical or psychological device.</p>
-                <p>2. Payment of $1.49 is a one-time fee per single data destruction session.</p>
-                <p>3. No logs or data are stored. All input is purged directly from volatile memory (RAM) upon completion.</p>
-                <p>4. We assume no liability for the user's emotional or mental state during or after use.</p>
-                <p>5. Due to the immediate nature of the digital service, all sales are final and non-refundable.</p>
+                <p>1. Symbolic digital ritual only. Not medical/psychological equipment.</p>
+                <p>2. $1.49 is a one-time fee per session.</p>
+                <p>3. No data logs. Purged from RAM upon completion.</p>
+                <p>4. All sales final.</p>
             </div>
-            <button onclick="toggleTOS()" class="w-full py-3 bg-white/10 text-white text-[10px] font-bold uppercase rounded-xl hover:bg-white/20 transition-all">Close Terminal</button>
+            <button onclick="toggleTOS()" class="w-full py-3 bg-white/10 text-white text-[10px] font-bold uppercase rounded-xl">Close</button>
         </div>
     </div>
 
@@ -136,26 +171,27 @@
         const buddy = document.getElementById('buddy-ai');
         const status = document.getElementById('buddy-status');
         const btn = document.getElementById('purge-btn');
+        const successMsg = document.getElementById('success-message');
 
-        // Automatikus ellenőrzés fizetés után
+        const fizzleSound = new Audio('https://www.soundjay.com/buttons/sounds/button-10.mp3');
+
         window.onload = () => {
             const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.get('payment') === 'success') {
-                runDisintegrationEffect("PAYMENT VERIFIED: PURGING SOUL...");
+                runDisintegrationEffect("PAYMENT VERIFIED: PURGING...");
             }
         };
 
-        // Camera init
         navigator.mediaDevices.getUserMedia({ video: true })
             .then(s => video.srcObject = s)
-            .catch(() => console.log("Camera access denied."));
+            .catch(() => {});
 
         function toggleTOS() {
             const modal = document.getElementById('tos-modal');
-            modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
+            modal.classList.toggle('hidden');
+            modal.classList.toggle('flex');
         }
 
-        // Assistant reaction
         input.addEventListener('input', () => {
             if(input.value.length > 0) {
                 buddy.classList.add('assistant-active');
@@ -167,65 +203,54 @@
             }
         });
 
-        // Particle effect logic
         function createParticles() {
             const rect = input.getBoundingClientRect();
-            const container = document.body;
-            
-            for(let i = 0; i < 100; i++) {
+            for(let i = 0; i < 60; i++) {
                 const p = document.createElement('div');
                 p.className = 'particle';
-                const size = Math.random() * 5 + 2;
+                const size = Math.random() * 4 + 2;
                 p.style.width = size + 'px';
                 p.style.height = size + 'px';
-                
                 p.style.left = (rect.left + rect.width / 2) + 'px';
                 p.style.top = (rect.top + rect.height / 2) + 'px';
-                
                 const angle = Math.random() * Math.PI * 2;
-                const distance = Math.random() * 500 + 100;
-                
+                const distance = Math.random() * 300 + 50;
                 p.style.setProperty('--x', Math.cos(angle) * distance + 'px');
                 p.style.setProperty('--y', Math.sin(angle) * distance + 'px');
-                
-                container.appendChild(p);
+                document.body.appendChild(p);
                 setTimeout(() => p.remove(), 1500);
             }
         }
 
-        function runDisintegrationEffect(message) {
-            btn.innerText = message;
+        function runDisintegrationEffect(msg) {
+            btn.innerText = msg;
             btn.disabled = true;
-            input.style.transition = "all 2.5s ease";
-            input.style.filter = "blur(30px) brightness(1.5)";
+            input.style.transition = "all 2s ease";
+            input.style.filter = "blur(20px) brightness(1.5)";
             input.style.opacity = "0";
             
+            fizzleSound.play().catch(() => {});
             createParticles();
             
             setTimeout(() => {
-                alert("Session Complete. Your burden has been volatilized.");
-                // Tisztítjuk az URL-t és frissítünk
-                window.location.href = window.location.pathname;
-            }, 3000);
+                successMsg.classList.add('show');
+                setTimeout(() => {
+                    successMsg.classList.remove('show');
+                    window.location.href = window.location.pathname;
+                }, 4000);
+            }, 2500);
         }
 
         function executeVault() {
-            const secretKey = "ADMIN_FREE_BYPASS";
-            
-            // Bypass teszteléshez
-            if(input.value.includes(secretKey)) {
-                runDisintegrationEffect("MASTER KEY ACTIVE: SHREDDING...");
+            if(input.value.includes("ADMIN_FREE_BYPASS")) {
+                runDisintegrationEffect("BYPASS ACTIVE...");
                 return;
             }
-
-            // Validálás
-            if(input.value.length < 10) { 
-                alert("Data stream too weak. Please describe your burden in more detail."); 
-                return; 
+            if(input.value.length < 10) {
+                alert("Please provide more detail.");
+                return;
             }
-
-            // Átirányítás az új Stripe linkre
-            btn.innerText = "REDIRECTING TO SECURE TERMINAL...";
+            btn.innerText = "CONNECTING TO STRIPE...";
             setTimeout(() => {
                 window.location.href = "https://buy.stripe.com/aFa8wP3hsehE1TTeRl8g001"; 
             }, 800);
