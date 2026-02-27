@@ -15,7 +15,7 @@
             background-attachment: fixed;
             color: #f1f5f9; 
             min-height: 100vh;
-            overflow-y: auto;
+            overflow-x: hidden;
             font-family: 'Inter', sans-serif;
         }
         .glass-ui { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1); }
@@ -31,13 +31,27 @@
         .assistant-active { animation: listen-pulse 2s infinite; }
         @keyframes listen-pulse { 0% { transform: scale(1); opacity: 0.6; } 50% { transform: scale(1.1); opacity: 1; } 100% { transform: scale(1); opacity: 0.6; } }
 
+        /* PORLADÓ EFFEKT */
+        .particle {
+            position: absolute;
+            pointer-events: none;
+            background: white;
+            border-radius: 50%;
+            animation: fly out 1.5s forwards;
+        }
+        @keyframes fly {
+            to { transform: translate(var(--x), var(--y)); opacity: 0; }
+        }
+
         .stripe-blue { color: #635bff; }
         .legal-box { font-size: 8px; line-height: 1.4; color: #64748b; text-align: justify; text-transform: uppercase; }
+        
+        #tos-modal { display: none; }
     </style>
 </head>
 <body class="flex flex-col items-center py-10 px-4">
 
-    <div class="w-full max-w-2xl glass-ui p-10 rounded-[2.5rem] shadow-2xl space-y-8">
+    <div class="w-full max-w-2xl glass-ui p-10 rounded-[2.5rem] shadow-2xl space-y-8 relative">
         
         <div class="flex justify-between items-start border-b border-white/5 pb-6">
             <div>
@@ -46,29 +60,35 @@
             </div>
             <div class="text-right max-w-[200px]">
                 <p class="text-[9px] font-light text-zinc-400 leading-tight uppercase tracking-widest">
-                    Symbolic Data Purge System. Secure emotional offloading for $1.49. No logs. Pure release.
+                    Symbolic Data Purge System. 1 session = $1.49. No logs. Pure release.
                 </p>
             </div>
+        </div>
+
+        <div class="text-center space-y-2">
+            <h2 class="text-xs font-bold uppercase tracking-[0.2em] text-teal-400">Hogyan működik?</h2>
+            <p class="text-[10px] text-zinc-400 leading-relaxed italic">
+                Írd le a problémáidat, fájdalmaidat vagy titkaidat. A fizetés után a rendszer vizuálisan és technikailag is atomjaira bontja a beírt szöveget a RAM-ból. Talán segít végleg elengedni őket.
+            </p>
         </div>
 
         <div class="flex flex-col items-center space-y-6">
             <div class="relative">
                 <video id="mirror" autoplay playsinline class="video-ring object-cover grayscale brightness-110"></video>
-                <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-teal-600 text-[8px] px-3 py-1 rounded-full font-bold">SECURE LINK</div>
+                <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-teal-600 text-[8px] px-3 py-1 rounded-full font-bold shadow-lg">SECURE LINK</div>
             </div>
 
             <div class="flex flex-col items-center text-center">
                 <svg id="buddy-ai" class="w-10 h-10 text-teal-400 opacity-60 transition-all" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                     <path d="M12 2C6.48 2 2 6.48 2 12V18C2 19.1 2.9 20 4 20H7V13H4V12C4 7.58 7.58 4 12 4S20 7.58 20 12V13H17V20H20C21.1 20 22 19.1 22 18V12C22 6.48 17.52 2 12 2Z" />
-                    <circle cx="9" cy="13" r="1" fill="currentColor"/>
-                    <circle cx="15" cy="13" r="1" fill="currentColor"/>
+                    <circle cx="9" cy="13" r="1" fill="currentColor"/><circle cx="15" cy="13" r="1" fill="currentColor"/>
                     <path d="M10 17C10 17 11 18 12 18S14 17 14 17" stroke-linecap="round"/>
                 </svg>
                 <p id="buddy-status" class="text-[9px] mt-2 uppercase tracking-[0.2em] text-teal-500/50">Assistant Idle</p>
             </div>
         </div>
 
-        <div class="space-y-6">
+        <div id="input-container" class="space-y-6 relative">
             <textarea id="confession" 
                 class="w-full h-52 bg-white/5 border border-white/10 p-6 rounded-3xl text-sm text-white placeholder-zinc-600 focus:outline-none focus:border-teal-500/50 transition-all resize-none"
                 placeholder="Unload your burden here..."></textarea>
@@ -81,16 +101,30 @@
 
         <div class="space-y-4 pt-4 border-t border-white/5">
             <div class="legal-box">
-                <strong>Disclaimer:</strong> SoulScript-Vault is a symbolic technical disposal tool. By using this service, you acknowledge this is a digital ritual and NOT a substitute for professional medical, psychological, or psychiatric advice. Participation is voluntary. $1.49 covers server overhead for secure RAM-wiping. All sales are final.
+                <strong>Disclaimer:</strong> SoulScript-Vault is a symbolic technical disposal tool. $1.49 grants access to ONE (1) disposal session. All sales final. <a href="#" onclick="toggleTOS()" class="text-teal-500 underline">Terms of Service applies.</a>
             </div>
             
             <div class="flex flex-col items-center space-y-1.5 opacity-80">
-                <p class="text-[9px] text-zinc-500 uppercase font-bold tracking-widest">Verified Security</p>
+                <p class="text-[9px] text-zinc-500 uppercase font-bold tracking-widest">Global Security</p>
                 <div class="flex items-center space-x-1">
-                    <span class="text-[10px] font-bold text-zinc-400">Powered by</span>
+                    <span class="text-[10px] font-bold text-zinc-400">Verified by</span>
                     <span class="stripe-blue font-black text-sm tracking-tight italic">stripe</span>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div id="tos-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-6">
+        <div class="bg-zinc-900 border border-white/10 p-8 rounded-3xl max-w-lg space-y-4">
+            <h3 class="text-white font-black uppercase text-sm">Terms of Service</h3>
+            <div class="text-[10px] text-zinc-400 space-y-2 overflow-y-auto max-h-60 pr-2">
+                <p>1. A SoulScript-Vault egy szimbolikus rituálét biztosít, nem orvosi eszköz.</p>
+                <p>2. A fizetés egyszeri ($1.49) és egyetlen adatmegsemmisítési ciklusra jogosít fel.</p>
+                <p>3. Az adatok nem kerülnek mentésre, a folyamat végén a RAM-ból törlődnek.</p>
+                <p>4. Nem vállalunk felelősséget a felhasználó érzelmi állapotáért a használat után.</p>
+                <p>5. Visszatérítés nem lehetséges a szolgáltatás jellegéből adódóan.</p>
+            </div>
+            <button onclick="toggleTOS()" class="w-full py-3 bg-white/10 text-white text-[10px] font-bold uppercase rounded-xl hover:bg-white/20 transition-all">Bezárás</button>
         </div>
     </div>
 
@@ -101,35 +135,62 @@
         const status = document.getElementById('buddy-status');
         const btn = document.getElementById('purge-btn');
 
-        navigator.mediaDevices.getUserMedia({ video: true }).then(s => video.srcObject = s).catch(() => console.log("Stream blocked"));
+        navigator.mediaDevices.getUserMedia({ video: true }).then(s => video.srcObject = s).catch(() => console.log("Mirror mode disabled."));
+
+        function toggleTOS() {
+            const modal = document.getElementById('tos-modal');
+            modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
+        }
 
         input.addEventListener('input', () => {
             if(input.value.length > 0) {
                 buddy.classList.add('assistant-active');
                 buddy.style.color = "#2dd4bf";
-                status.innerText = "Analyzing disclosure...";
+                status.innerText = "Analyzing stream...";
             } else {
                 buddy.classList.remove('assistant-active');
-                buddy.style.color = "#2dd4bf99";
                 status.innerText = "Assistant Idle";
             }
         });
 
+        function createParticles() {
+            const container = document.getElementById('input-container');
+            for(let i = 0; i < 50; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                const size = Math.random() * 4 + 2;
+                p.style.width = size + 'px';
+                p.style.height = size + 'px';
+                p.style.left = '50%';
+                p.style.top = '50%';
+                p.style.setProperty('--x', (Math.random() - 0.5) * 600 + 'px');
+                p.style.setProperty('--y', (Math.random() - 0.5) * 600 + 'px');
+                container.appendChild(p);
+                setTimeout(() => p.remove(), 1500);
+            }
+        }
+
         function executeVault() {
             const secretKey = "ADMIN_FREE_BYPASS";
-            if(input.value.length < 10) { alert("Data stream too weak for incineration."); return; }
+            if(input.value.length < 10) { alert("Insufficient data stream."); return; }
 
-            btn.innerText = "DECONTAMINATING...";
-            btn.style.opacity = "0.7";
-            
-            setTimeout(() => {
-                if(input.value.includes(secretKey)) {
-                    alert("MASTER ACCESS GRANTED. Data overwritten. Session purged.");
+            if(input.value.includes(secretKey)) {
+                btn.innerText = "BYPASS ACTIVE: SHREDDING...";
+                input.style.transition = "all 1s ease";
+                input.style.filter = "blur(10px)";
+                input.style.opacity = "0";
+                createParticles();
+                
+                setTimeout(() => {
+                    alert("Master Key Accepted. The Vault is empty.");
                     location.reload();
-                } else {
+                }, 2000);
+            } else {
+                btn.innerText = "REDIRECTING TO TERMINAL...";
+                setTimeout(() => {
                     window.location.href = "https://buy.stripe.com/5kA02GatOfvC1eoaEE"; 
-                }
-            }, 1200);
+                }, 1000);
+            }
         }
     </script>
 </body>
