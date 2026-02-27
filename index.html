@@ -213,14 +213,22 @@
         fizzleSound.volume = 0.5;
 
         window.onload = () => {
-            // MOBIL VÉDELEM: Csak 768px felett próbál kamerát indítani
-            if (window.innerWidth >= 768) {
-                if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-                    navigator.mediaDevices.getUserMedia({ video: true })
-                        .then(s => { video.srcObject = s; })
-                        .catch(() => { console.log("Camera access denied"); });
+            const startCamera = () => {
+                if (window.innerWidth >= 768 && !video.srcObject) {
+                    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                        navigator.mediaDevices.getUserMedia({ video: true })
+                            .then(s => { 
+                                video.srcObject = s; 
+                                video.play();
+                                document.removeEventListener('click', startCamera);
+                            })
+                            .catch(() => { console.log("Camera access denied"); });
+                    }
                 }
-            }
+            };
+
+            document.addEventListener('click', startCamera);
+            startCamera();
 
             const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.get('payment') === 'success') {
