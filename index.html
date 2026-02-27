@@ -31,16 +31,18 @@
         .assistant-active { animation: listen-pulse 2s infinite; }
         @keyframes listen-pulse { 0% { transform: scale(1); opacity: 0.6; } 50% { transform: scale(1.1); opacity: 1; } 100% { transform: scale(1); opacity: 0.6; } }
 
-        /* PORLADÓ EFFEKT */
+        /* PARTICLE EFFECT */
         .particle {
             position: absolute;
             pointer-events: none;
             background: white;
             border-radius: 50%;
-            animation: fly out 1.5s forwards;
+            z-index: 100;
+            animation: fly-out 1.5s forwards ease-out;
         }
-        @keyframes fly {
-            to { transform: translate(var(--x), var(--y)); opacity: 0; }
+        @keyframes fly-out {
+            0% { transform: translate(0, 0); opacity: 1; }
+            100% { transform: translate(var(--x), var(--y)); opacity: 0; }
         }
 
         .stripe-blue { color: #635bff; }
@@ -66,9 +68,9 @@
         </div>
 
         <div class="text-center space-y-2">
-            <h2 class="text-xs font-bold uppercase tracking-[0.2em] text-teal-400">Hogyan működik?</h2>
-            <p class="text-[10px] text-zinc-400 leading-relaxed italic">
-                Írd le a problémáidat, fájdalmaidat vagy titkaidat. A fizetés után a rendszer vizuálisan és technikailag is atomjaira bontja a beírt szöveget a RAM-ból. Talán segít végleg elengedni őket.
+            <h2 class="text-xs font-bold uppercase tracking-[0.2em] text-teal-400">How it works</h2>
+            <p class="text-[10px] text-zinc-400 leading-relaxed italic px-4">
+                Describe your burdens, pain, or secrets below. Upon secure processing, the system will visually and technically disintegrate your data from RAM. This digital ritual is designed to help you let go.
             </p>
         </div>
 
@@ -95,13 +97,13 @@
             
             <button id="purge-btn" onclick="executeVault()" 
                 class="btn-wealth w-full py-5 text-white font-black rounded-2xl uppercase tracking-widest text-sm">
-                Incinirate & Release ($1.49)
+                Incinerate & Release ($1.49)
             </button>
         </div>
 
         <div class="space-y-4 pt-4 border-t border-white/5">
             <div class="legal-box">
-                <strong>Disclaimer:</strong> SoulScript-Vault is a symbolic technical disposal tool. $1.49 grants access to ONE (1) disposal session. All sales final. <a href="#" onclick="toggleTOS()" class="text-teal-500 underline">Terms of Service applies.</a>
+                <strong>Disclaimer:</strong> SoulScript-Vault is a symbolic technical disposal tool. $1.49 grants access to ONE (1) disposal session. All sales are final. No professional medical advice provided. <a href="#" onclick="toggleTOS()" class="text-teal-500 underline lowercase">View Terms of Service</a>.
             </div>
             
             <div class="flex flex-col items-center space-y-1.5 opacity-80">
@@ -115,16 +117,16 @@
     </div>
 
     <div id="tos-modal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-6">
-        <div class="bg-zinc-900 border border-white/10 p-8 rounded-3xl max-w-lg space-y-4">
+        <div class="bg-zinc-900 border border-white/10 p-8 rounded-3xl max-w-lg space-y-4 shadow-2xl">
             <h3 class="text-white font-black uppercase text-sm">Terms of Service</h3>
-            <div class="text-[10px] text-zinc-400 space-y-2 overflow-y-auto max-h-60 pr-2">
-                <p>1. A SoulScript-Vault egy szimbolikus rituálét biztosít, nem orvosi eszköz.</p>
-                <p>2. A fizetés egyszeri ($1.49) és egyetlen adatmegsemmisítési ciklusra jogosít fel.</p>
-                <p>3. Az adatok nem kerülnek mentésre, a folyamat végén a RAM-ból törlődnek.</p>
-                <p>4. Nem vállalunk felelősséget a felhasználó érzelmi állapotáért a használat után.</p>
-                <p>5. Visszatérítés nem lehetséges a szolgáltatás jellegéből adódóan.</p>
+            <div class="text-[10px] text-zinc-400 space-y-3 overflow-y-auto max-h-60 pr-2">
+                <p>1. SoulScript-Vault provides a symbolic digital ritual. It is not a medical or psychological device.</p>
+                <p>2. Payment of $1.49 is a one-time fee per single data destruction session.</p>
+                <p>3. No logs or data are stored. All input is purged directly from volatile memory (RAM) upon completion.</p>
+                <p>4. We assume no liability for the user's emotional or mental state during or after use.</p>
+                <p>5. Due to the immediate nature of the digital service, all sales are final and non-refundable.</p>
             </div>
-            <button onclick="toggleTOS()" class="w-full py-3 bg-white/10 text-white text-[10px] font-bold uppercase rounded-xl hover:bg-white/20 transition-all">Bezárás</button>
+            <button onclick="toggleTOS()" class="w-full py-3 bg-white/10 text-white text-[10px] font-bold uppercase rounded-xl hover:bg-white/20 transition-all">Close Terminal</button>
         </div>
     </div>
 
@@ -135,13 +137,17 @@
         const status = document.getElementById('buddy-status');
         const btn = document.getElementById('purge-btn');
 
-        navigator.mediaDevices.getUserMedia({ video: true }).then(s => video.srcObject = s).catch(() => console.log("Mirror mode disabled."));
+        // Camera init
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(s => video.srcObject = s)
+            .catch(() => console.log("Camera access denied."));
 
         function toggleTOS() {
             const modal = document.getElementById('tos-modal');
             modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
         }
 
+        // Assistant reaction
         input.addEventListener('input', () => {
             if(input.value.length > 0) {
                 buddy.classList.add('assistant-active');
@@ -153,18 +159,28 @@
             }
         });
 
+        // Particle effect logic
         function createParticles() {
-            const container = document.getElementById('input-container');
-            for(let i = 0; i < 50; i++) {
+            const rect = input.getBoundingClientRect();
+            const container = document.body;
+            
+            for(let i = 0; i < 80; i++) {
                 const p = document.createElement('div');
                 p.className = 'particle';
-                const size = Math.random() * 4 + 2;
+                const size = Math.random() * 5 + 2;
                 p.style.width = size + 'px';
                 p.style.height = size + 'px';
-                p.style.left = '50%';
-                p.style.top = '50%';
-                p.style.setProperty('--x', (Math.random() - 0.5) * 600 + 'px');
-                p.style.setProperty('--y', (Math.random() - 0.5) * 600 + 'px');
+                
+                // Start from textarea center
+                p.style.left = (rect.left + rect.width / 2) + 'px';
+                p.style.top = (rect.top + rect.height / 2) + 'px';
+                
+                const angle = Math.random() * Math.PI * 2;
+                const distance = Math.random() * 400 + 100;
+                
+                p.style.setProperty('--x', Math.cos(angle) * distance + 'px');
+                p.style.setProperty('--y', Math.sin(angle) * distance + 'px');
+                
                 container.appendChild(p);
                 setTimeout(() => p.remove(), 1500);
             }
@@ -172,13 +188,15 @@
 
         function executeVault() {
             const secretKey = "ADMIN_FREE_BYPASS";
-            if(input.value.length < 10) { alert("Insufficient data stream."); return; }
+            if(input.value.length < 10) { alert("Data stream too weak."); return; }
 
+            // Master key simulation
             if(input.value.includes(secretKey)) {
-                btn.innerText = "BYPASS ACTIVE: SHREDDING...";
-                input.style.transition = "all 1s ease";
-                input.style.filter = "blur(10px)";
+                btn.innerText = "BYPASS GRANTED: SHREDDING...";
+                input.style.transition = "all 1.5s ease";
+                input.style.filter = "blur(15px)";
                 input.style.opacity = "0";
+                
                 createParticles();
                 
                 setTimeout(() => {
@@ -186,6 +204,7 @@
                     location.reload();
                 }, 2000);
             } else {
+                // Production redirect
                 btn.innerText = "REDIRECTING TO TERMINAL...";
                 setTimeout(() => {
                     window.location.href = "https://buy.stripe.com/5kA02GatOfvC1eoaEE"; 
