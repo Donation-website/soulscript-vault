@@ -6,12 +6,12 @@
     <title>SoulScript-Vault | Professional Emotional Disposal</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;800&display=swap');
         
         body { 
-            /* VILÁGOSABB, MELEGEBB HÁTTÉR */
-            background: linear-gradient(rgba(240, 244, 248, 0.7), rgba(240, 244, 248, 0.85)), 
-                        url('https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&q=80&w=2000'); 
+            /* VILÁGOS, PRÉMIUM IRODAI HÁTTÉR */
+            background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(240, 249, 250, 0.9)), 
+                        url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2000'); 
             background-size: cover;
             background-attachment: fixed;
             color: #1e293b; 
@@ -20,115 +20,114 @@
             font-family: 'Inter', sans-serif;
         }
 
-        .glass-ui { 
-            background: rgba(255, 255, 255, 0.6); 
-            backdrop-filter: blur(25px); 
-            border: 1px solid rgba(255, 255, 255, 0.4); 
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+        .glass-container { 
+            background: rgba(255, 255, 255, 0.7); 
+            backdrop-filter: blur(30px); 
+            border: 1px solid rgba(255, 255, 255, 0.8); 
+            box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.05);
         }
 
-        .video-ring { 
-            width: 160px; 
-            height: 160px; 
+        .video-feed { 
+            width: 150px; 
+            height: 150px; 
             border-radius: 50%; 
-            border: 3px solid #0d9488; 
-            box-shadow: 0 0 20px rgba(13, 148, 136, 0.15); 
+            border: 4px solid #06b6d4; 
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.2); 
         }
         
-        .btn-wealth { 
-            background: linear-gradient(135deg, #0d9488 0%, #0ea5e9 100%); 
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        .btn-action { 
+            background: linear-gradient(135deg, #0d9488 0%, #0891b2 100%); 
+            transition: all 0.3s ease;
         }
-        .btn-wealth:hover { transform: scale(1.02); box-shadow: 0 20px 30px -10px rgba(13, 148, 136, 0.5); }
+        .btn-action:hover { transform: translateY(-3px); box-shadow: 0 20px 40px -10px rgba(13, 148, 136, 0.4); }
 
-        .assistant-active { animation: listen-pulse 1.5s infinite ease-in-out; color: #0d9488 !important; }
-        @keyframes listen-pulse { 0% { transform: scale(1); opacity: 0.5; } 50% { transform: scale(1.2); opacity: 1; } 100% { transform: scale(1); opacity: 0.5; } }
+        .pulse-buddy { animation: buddy-breath 2s infinite ease-in-out; }
+        @keyframes buddy-breath { 0%, 100% { opacity: 0.4; transform: scale(1); } 50% { opacity: 0.9; transform: scale(1.05); } }
     </style>
 </head>
-<body class="flex flex-col items-center py-10 px-4">
+<body class="flex flex-col items-center py-12 px-4">
 
-    <div class="w-full max-w-2xl glass-ui p-10 rounded-[3rem] space-y-8">
+    <div class="w-full max-w-2xl glass-container p-12 rounded-[3.5rem] space-y-8">
         
-        <div class="flex justify-between items-start border-b border-black/5 pb-6">
+        <div class="flex justify-between items-center border-b border-black/5 pb-8">
             <div>
-                <h1 class="text-xl font-black tracking-tighter uppercase text-slate-800">SoulScript<span class="text-teal-600">Vault</span></h1>
-                <p class="text-[8px] tracking-[0.3em] text-teal-600 font-bold uppercase">Clinical Grade Disposal</p>
+                <h1 class="text-2xl font-black tracking-tighter uppercase text-slate-900">SoulScript<span class="text-cyan-600">Vault</span></h1>
+                <p class="text-[9px] tracking-[0.4em] text-cyan-700 font-bold uppercase">Clinical Disposal Protocol</p>
             </div>
-            <div class="text-right max-w-[220px]">
-                <p class="text-[9px] font-medium text-slate-500 leading-tight uppercase tracking-widest">
-                    Why pay $200/hr for a shrink when you can purge for $1.49? No logs. No judgment. Pure release.
+            <div class="text-right">
+                <p class="text-[10px] font-medium text-slate-400 uppercase tracking-widest leading-relaxed">
+                    Why pay $200 for a shrink?<br>Purge your secrets for $1.49.
                 </p>
             </div>
         </div>
 
         <div class="flex flex-col items-center space-y-6">
             <div class="relative">
-                <video id="mirror" autoplay playsinline class="video-ring object-cover grayscale brightness-105"></video>
-                <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-teal-600 text-white text-[7px] px-3 py-1 rounded-full font-bold shadow-lg">LIVE ENCRYPTED FEED</div>
+                <video id="mirror" autoplay playsinline class="video-feed object-cover grayscale brightness-110"></video>
+                <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-cyan-600 text-white text-[8px] px-4 py-1 rounded-full font-extrabold shadow-xl whitespace-nowrap">SECURE ANALYTIC FEED</div>
             </div>
 
             <div class="flex flex-col items-center text-center">
-                <svg id="buddy-ai" class="w-12 h-12 text-slate-400 opacity-40 transition-all" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+                <svg id="buddy-icon" class="w-12 h-12 text-cyan-500 opacity-40 transition-all" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
                     <path d="M12 2C6.48 2 2 6.48 2 12V18C2 19.1 2.9 20 4 20H7V13H4V12C4 7.58 7.58 4 12 4S20 7.58 20 12V13H17V20H20C21.1 20 22 19.1 22 18V12C22 6.48 17.52 2 12 2Z" />
                     <circle cx="9" cy="12" r="1" fill="currentColor"/>
                     <circle cx="15" cy="12" r="1" fill="currentColor"/>
-                    <path d="M9 16c1 1.5 2.5 2 3 2s2-.5 3-2" stroke-linecap="round"/>
                 </svg>
-                <p id="buddy-status" class="text-[9px] mt-2 uppercase tracking-[0.2em] text-teal-700/60 font-bold">Assistant Listening</p>
+                <p id="buddy-text" class="text-[9px] mt-2 uppercase tracking-[0.2em] text-cyan-800/50 font-bold">Assistant Status: Active</p>
             </div>
         </div>
 
         <div class="space-y-6">
             <textarea id="confession" 
-                class="w-full h-52 bg-white/40 border border-black/5 p-6 rounded-3xl text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-500/20 transition-all resize-none shadow-inner"
-                placeholder="Proceed with your disclosure... Buddy is here to process your burden."></textarea>
+                class="w-full h-56 bg-white/50 border border-black/5 p-8 rounded-[2rem] text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-4 focus:ring-cyan-500/10 transition-all resize-none shadow-inner"
+                placeholder="Buddy is ready to receive your burden..."></textarea>
             
-            <button id="purge-btn" onclick="executeVault()" 
-                class="btn-wealth w-full py-5 text-white font-black rounded-2xl uppercase tracking-[0.2em] text-xs shadow-xl">
+            <button id="purge-btn" onclick="processPayment()" 
+                class="btn-action w-full py-6 text-white font-black rounded-3xl uppercase tracking-[0.3em] text-xs shadow-2xl">
                 Incinirate & Release ($1.49)
             </button>
         </div>
 
-        <div class="flex flex-col items-center pt-4 space-y-3">
-            <p class="text-[9px] text-slate-400 uppercase tracking-tighter">Instant Data Obliteration Protocol Active</p>
-            <img src="/stripe.png" alt="Stripe Secured" class="h-6 opacity-80 grayscale hover:grayscale-0 transition-all">
+        <div class="flex flex-col items-center pt-6 border-t border-black/5 space-y-4">
+            <p class="text-[9px] text-slate-400 font-bold uppercase tracking-widest">Instant Data Volatilization Verified</p>
+            <img src="/stripe.png" alt="Stripe" class="h-6 opacity-60 hover:opacity-100 transition-all grayscale hover:grayscale-0">
         </div>
     </div>
 
     <script>
         const video = document.getElementById('mirror');
         const input = document.getElementById('confession');
-        const buddy = document.getElementById('buddy-ai');
-        const status = document.getElementById('buddy-status');
+        const buddy = document.getElementById('buddy-icon');
+        const status = document.getElementById('buddy-text');
         const btn = document.getElementById('purge-btn');
 
         navigator.mediaDevices.getUserMedia({ video: true }).then(s => video.srcObject = s);
 
         input.addEventListener('input', () => {
             if(input.value.length > 0) {
-                buddy.classList.add('assistant-active');
-                status.innerText = "Processing disclosure stream...";
+                buddy.classList.add('pulse-buddy');
+                status.innerText = "Analyzing disclosure stream...";
             } else {
-                buddy.classList.remove('assistant-active');
-                status.innerText = "Assistant Listening";
+                buddy.classList.remove('pulse-buddy');
+                status.innerText = "Assistant Status: Active";
             }
         });
 
-        function executeVault() {
-            const secretKey = "ADMIN_FREE_BYPASS";
-            if(input.value.length < 10) { alert("Insufficient data for decontamination."); return; }
+        function processPayment() {
+            const secret = "ADMIN_FREE_BYPASS";
+            if(input.value.length < 15) { alert("Insufficient burden. Buddy requires more truth."); return; }
 
-            btn.innerText = "CLEANSING KARMA...";
-            btn.style.opacity = "0.7";
-
+            btn.innerText = "DECONTAMINATING...";
+            
             setTimeout(() => {
-                if(input.value.includes(secretKey)) {
-                    alert("MASTER KEY DETECTED: Oblivion granted. Session cleared.");
+                if(input.value.includes(secret)) {
+                    alert("MASTER KEY ACCEPTED. The Void has cleared your debt.");
                     location.reload();
                 } else {
-                    window.location.href = "https://buy.stripe.com/TU_LINKED_STUFF"; 
+                    // Itt rakd be a Stripe Payment Linkedet
+                    window.location.href = "https://buy.stripe.com/TU_ELES_LINKED"; 
                 }
-            }, 1200);
+            }, 1000);
         }
     </script>
 </body>
