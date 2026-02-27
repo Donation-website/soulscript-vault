@@ -3,111 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SoulScript-Vault | Industrial Soul Cleansing</title>
-    
-    <meta name="description" content="SoulScript-Vault: Why pay $200 for therapy? Use our biohazard-grade digital incinerator to purge your secrets for $1.49. No data, no logs, pure relief.">
-    <meta name="keywords" content="digital confession, karma cleansing, biohazard soul purge, anonymous venting, stress relief, stripe secured, Buddy the protector">
-    
+    <title>SoulScript-Vault | Professional Emotional Disposal</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { background: radial-gradient(circle, #050505 0%, #000000 100%); color: #d1d5db; height: 100vh; overflow: hidden; font-family: 'Courier New', Courier, monospace; }
-        .video-container { width: 200px; height: 200px; border-radius: 50%; overflow: hidden; border: 2px solid #ef4444; box-shadow: 0 0 25px rgba(239, 68, 68, 0.3); transform: scaleX(-1); }
-        .biohazard-yellow { color: #facc15; }
-        .purge-animation { animation: incinerate 1.2s forwards; }
-        @keyframes incinerate { 
-            0% { transform: scale(1) translateY(0); filter: brightness(1); opacity: 1; }
-            40% { transform: scale(0.8) translateY(-20px); filter: brightness(2) sepia(1) saturate(5); }
-            100% { transform: scale(0) translateY(100px); filter: brightness(0); opacity: 0; }
+        /* GÖRDÜLÉS JAVÍTÁSA ÉS PROFESSZIONÁLIS HÁTTÉR */
+        body { 
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)), 
+                        url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2000'); 
+            background-size: cover;
+            background-attachment: fixed;
+            color: #d1d5db; 
+            min-height: 100vh; /* Itt engedjük a tartalomnak, hogy nyúljon */
+            overflow-y: auto;  /* GÖRDÜLÉS ENGEDÉLYEZVE */
+            font-family: 'Inter', sans-serif;
         }
-        .glitch { animation: glitch-anim 3s infinite; }
-        @keyframes glitch-anim {
-            0% { text-shadow: 2px 0 #ff0000, -2px 0 #00ff00; }
-            50% { text-shadow: -1px 0 #ff0000, 1px 0 #00ff00; }
-            100% { text-shadow: 2px 0 #ff0000, -2px 0 #00ff00; }
+        .video-container { width: 180px; height: 180px; border-radius: 50%; overflow: hidden; border: 1px solid rgba(239, 68, 68, 0.5); box-shadow: 0 0 40px rgba(0, 0, 0, 0.8); transform: scaleX(-1); }
+        .glass-panel { background: rgba(15, 15, 15, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .purge-animation { animation: vanish 1s forwards; }
+        @keyframes vanish { to { opacity: 0; transform: scale(0.9) translateY(20px); filter: blur(10px); } }
+        
+        /* A "NEM GAGYI" BUDDY (Modern Ghost Effect) */
+        .ghost-buddy { 
+            filter: drop-shadow(0 0 8px rgba(255,255,255,0.2)); 
+            opacity: 0.6; 
+            animation: float 4s ease-in-out infinite; 
         }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
     </style>
 </head>
-<body class="flex flex-col items-center justify-between py-8 px-4">
+<body class="flex flex-col items-center py-12 px-4">
 
-    <div class="text-center">
-        <h1 class="text-3xl font-black tracking-tighter uppercase glitch text-white">SoulScript-Vault</h1>
-        <p class="text-[10px] tracking-[0.4em] text-red-500 font-bold">BIOHAZARD EMOTIONAL DISPOSAL SYSTEM</p>
-    </div>
-
-    <div id="main-interface" class="w-full max-w-lg flex flex-col items-center space-y-4">
+    <div class="w-full max-w-xl space-y-8 glass-panel p-8 rounded-3xl shadow-2xl">
         
-        <div class="video-container bg-black">
-            <video id="mirror" autoplay playsinline class="w-full h-full object-cover grayscale contrast-125"></video>
+        <div class="text-center space-y-1">
+            <h1 class="text-2xl font-light tracking-[0.5em] uppercase text-white">SoulScript</h1>
+            <p class="text-[9px] tracking-widest text-red-500 font-bold opacity-80">BIOHAZARD DISPOSAL PROTOCOL v2.6</p>
         </div>
 
-        <div id="buddy-container" class="relative group cursor-help">
-            <div id="buddy-bubble" class="absolute -top-12 left-1/2 -translate-x-1/2 bg-white text-black text-[10px] px-2 py-1 rounded font-bold whitespace-nowrap opacity-0 transition-opacity">Buddy is ready.</div>
-            <div class="text-5xl transition-transform hover:scale-110">🐕‍🦺</div>
-            <div class="text-[9px] text-center font-bold text-gray-500 uppercase mt-1">Buddy: Astral Guardian</div>
+        <div class="flex flex-col items-center space-y-6">
+            <div class="video-container bg-black">
+                <video id="mirror" autoplay playsinline class="w-full h-full object-cover grayscale opacity-40 hover:opacity-100 transition-opacity"></video>
+            </div>
+
+            <div class="flex flex-col items-center">
+                <svg class="w-12 h-12 ghost-buddy text-white/40" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12,2A10,10 0 0,0 2,12C2,13.4 2.3,14.7 2.8,16L5,13.8V11A7,7 0 0,1 12,4A7,7 0 0,1 19,11V13.8L21.2,16C21.7,14.7 22,13.4 22,12A10,10 0 0,0 12,2M7,11A1,1 0 0,0 6,12A1,1 0 0,0 7,13A1,1 0 0,0 8,12A1,1 0 0,0 7,11M17,11A1,1 0 0,0 16,12A1,1 0 0,0 17,13A1,1 0 0,0 18,12A1,1 0 0,0 17,11Z" />
+                </svg>
+                <div id="buddy-msg" class="text-[10px] mt-2 text-white/30 uppercase tracking-widest italic">Guardian Active</div>
+            </div>
         </div>
 
-        <textarea id="confession" 
-            class="w-full h-40 bg-zinc-900/80 border border-red-900/30 p-4 rounded text-sm text-red-100 placeholder-zinc-700 focus:outline-none focus:border-red-600 transition-colors"
-            placeholder="TYPE YOUR TOXIC THOUGHTS HERE... THE VAULT IS NON-CUSTODIAL."></textarea>
-
-        <div id="disposal-unit" class="hidden flex flex-col items-center py-4">
-            <svg class="w-20 h-20 fill-yellow-500 animate-pulse" viewBox="0 0 24 24">
-                <path d="M12,2L4.5,20.29L5.21,21L12,18L18.79,21L19.5,20.29L12,2Z M12,14.5A2.5,2.5 0 0,1 9.5,12A2.5,2.5 0 0,1 12,9.5A2.5,2.5 0 0,1 14.5,12A2.5,2.5 0 0,1 12,14.5Z" />
-            </svg>
-            <p class="text-yellow-500 font-bold text-xs mt-2 tracking-widest">DECONTAMINATING SOUL...</p>
+        <div class="space-y-4">
+            <textarea id="confession" 
+                class="w-full h-48 bg-black/40 border border-white/5 p-6 rounded-2xl text-sm text-white placeholder-zinc-700 focus:outline-none focus:border-red-600 transition-all resize-none shadow-inner"
+                placeholder="Proceed with your disclosure..."></textarea>
+            
+            <button id="purge-btn" onclick="startDisposal()" 
+                class="w-full py-5 bg-red-600 hover:bg-red-500 text-white font-bold rounded-2xl transition-all active:scale-95 uppercase tracking-[0.2em] shadow-[0_10px_30px_rgba(220,38,38,0.2)]">
+                Execute Purge ($1.49)
+            </button>
         </div>
 
-        <button id="purge-btn" onclick="startDisposal()" 
-            class="w-full py-4 bg-red-600 text-white font-black rounded hover:bg-red-700 transition-all active:scale-95 shadow-lg uppercase tracking-widest">
-            INCINERATE DATA ($1.49)
-        </button>
-
-        <div class="text-[9px] text-gray-600 text-center space-y-1">
-            <p>🔒 SECURED BY STRIPE | NO LOGIN REQUIRED | ZERO DATABASE LOGS</p>
-            <p class="max-w-xs mx-auto">Why pay $200 for a shrink when you can dump your mental waste for the price of a candy bar? Your secret is destroyed instantly upon payment.</p>
+        <div class="grid grid-cols-2 gap-4 text-[9px] text-zinc-500 uppercase tracking-tighter pt-4 border-t border-white/5">
+            <div class="border-r border-white/5 pr-4">
+                <strong>Secured Terminal</strong><br>Stripe encrypted. No logs. No trace.
+            </div>
+            <div class="pl-4">
+                <strong>Finality</strong><br>Data is overwritten in RAM before disposal.
+            </div>
         </div>
     </div>
 
     <script>
         const video = document.getElementById('mirror');
         const input = document.getElementById('confession');
-        const bubble = document.getElementById('buddy-bubble');
-        const btn = document.getElementById('purge-btn');
-        const disposal = document.getElementById('disposal-unit');
+        const msg = document.getElementById('buddy-msg');
 
-        // Webcam access
-        navigator.mediaDevices.getUserMedia({ video: true })
-            .then(stream => { video.srcObject = stream; })
-            .catch(() => { bubble.innerText = "Buddy sees only darkness."; bubble.style.opacity = "1"; });
+        navigator.mediaDevices.getUserMedia({ video: true }).then(s => video.srcObject = s);
 
-        // Buddy's reactions
-        const messages = ["Buddy is listening.", "Let it all out.", "Don't hold back.", "The Void is hungry.", "Buddy won't tell."];
-        input.addEventListener('focus', () => {
-            bubble.style.opacity = "1";
-            bubble.innerText = messages[Math.floor(Math.random()*messages.length)];
-        });
+        input.addEventListener('focus', () => { msg.innerText = "Monitoring disclosure..."; });
 
         function startDisposal() {
-            if(input.value.length < 15) {
-                bubble.innerText = "The Void needs more fuel!";
-                return;
-            }
-
-            // Phase 1: Incineration
+            if(input.value.length < 15) { msg.innerText = "Insufficient data."; return; }
             input.classList.add('purge-animation');
-            btn.innerHTML = "DISPOSING WASTE...";
-            btn.classList.add('opacity-50', 'pointer-events-none');
-            bubble.innerText = "Buddy is burning it!";
-
+            document.getElementById('purge-btn').innerText = "OBLITERATING...";
+            
             setTimeout(() => {
-                input.classList.add('hidden');
-                disposal.classList.remove('hidden');
-                
-                // Final message before Stripe
-                setTimeout(() => {
-                    alert("PROTOCOL COMPLETE: Your emotional waste has been neutralized. Your soul is now 1.49 units cleaner. Proceed to secure Stripe terminal for final karma clearance.");
-                    window.location.href = "https://buy.stripe.com/EZ_A_TE_STRIPE_LINKED"; 
-                }, 2000);
+                alert("DECONTAMINATION COMPLETE. Proceed to final clearance.");
+                window.location.href = "https://buy.stripe.com/IDE_A_TE_LINKED";
             }, 1000);
         }
     </script>
