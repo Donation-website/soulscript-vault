@@ -51,10 +51,16 @@
             border: 2px solid #0ea5e9; 
             box-shadow: 0 0 30px rgba(14, 165, 233, 0.2); 
             object-fit: cover;
+            /* Mobilon elrejtve, hogy ne zavarjon be a betöltésnél */
+            display: none;
         }
 
         @media (min-width: 768px) {
-            .video-ring { width: 160px; height: 160px; }
+            .video-ring { 
+                display: block;
+                width: 160px; 
+                height: 160px; 
+            }
         }
 
         .btn-wealth { 
@@ -103,6 +109,7 @@
         .stripe-blue { color: #635bff; }
         .legal-box { font-size: 8px; line-height: 1.4; color: #64748b; text-align: justify; text-transform: uppercase; }
         
+        #tos-modal { display: none; }
         textarea { font-size: 16px !important; transition: filter 3s ease, opacity 3s ease; }
     </style>
 </head>
@@ -140,7 +147,7 @@
         <div class="flex flex-col items-center space-y-6">
             <div class="relative">
                 <video id="mirror" autoplay playsinline muted class="video-ring grayscale brightness-110"></video>
-                <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-teal-600 text-[8px] px-3 py-1 rounded-full font-bold shadow-lg">SECURE LINK</div>
+                <div id="secure-tag" class="hidden md:block absolute -bottom-3 left-1/2 -translate-x-1/2 bg-teal-600 text-[8px] px-3 py-1 rounded-full font-bold shadow-lg">SECURE LINK</div>
             </div>
 
             <div class="flex flex-col items-center text-center">
@@ -207,13 +214,18 @@
         fizzleSound.volume = 0.5;
 
         window.onload = () => {
+            // CSAK ASZTALI GÉPEN PRÓBÁLJA MEGBYITNI A KAMERÁT
+            if (window.innerWidth >= 768) {
+                navigator.mediaDevices.getUserMedia({ video: true })
+                    .then(s => { video.srcObject = s; })
+                    .catch(() => { console.log("Camera access denied or not available"); });
+            }
+
             const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.get('payment') === 'success') {
                 runDisintegrationEffect("PAYMENT VERIFIED: PURGING...");
             }
         };
-
-        navigator.mediaDevices.getUserMedia({ video: true }).then(s => video.srcObject = s).catch(() => {});
 
         function toggleTOS() {
             if (tosModal.classList.contains('hidden')) {
