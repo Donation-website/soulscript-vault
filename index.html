@@ -3,88 +3,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SoulScript-Vault | Global Anonymous Confessional</title>
+    <title>SoulScript-Vault | Industrial Soul Cleansing</title>
     
-    <meta name="description" content="Official SoulScript-Vault. Why pay $200 for therapy? Purge your soul, erase your secrets, and cleanse your karma for $1.49. No data logs. Total oblivion.">
-    <meta name="keywords" content="anonymous confession, digital therapy, karma cleansing, stress relief, soul purge, burn secrets, private venting, mental detox, void talk">
+    <meta name="description" content="SoulScript-Vault: Why pay $200 for therapy? Use our biohazard-grade digital incinerator to purge your secrets for $1.49. No data, no logs, pure relief.">
+    <meta name="keywords" content="digital confession, karma cleansing, biohazard soul purge, anonymous venting, stress relief, stripe secured, Buddy the protector">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { background: radial-gradient(circle, #0a0a10 0%, #000000 100%); color: #a78bfa; height: 100vh; overflow: hidden; font-family: 'Courier New', Courier, monospace; }
-        .video-container { width: 220px; height: 220px; border-radius: 50%; overflow: hidden; border: 2px solid #7c3aed; box-shadow: 0 0 30px rgba(124, 58, 237, 0.4); transform: scaleX(-1); }
-        .glitch-text { animation: pulse 2s infinite; }
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
-        .purge-effect { animation: burn 1.5s forwards; }
-        @keyframes burn { 
-            0% { filter: brightness(1) blur(0); transform: scale(1); }
-            50% { filter: brightness(3) blur(5px); transform: scale(1.1); }
-            100% { filter: brightness(0) blur(20px); transform: scale(0); opacity: 0; }
+        body { background: radial-gradient(circle, #050505 0%, #000000 100%); color: #d1d5db; height: 100vh; overflow: hidden; font-family: 'Courier New', Courier, monospace; }
+        .video-container { width: 200px; height: 200px; border-radius: 50%; overflow: hidden; border: 2px solid #ef4444; box-shadow: 0 0 25px rgba(239, 68, 68, 0.3); transform: scaleX(-1); }
+        .biohazard-yellow { color: #facc15; }
+        .purge-animation { animation: incinerate 1.2s forwards; }
+        @keyframes incinerate { 
+            0% { transform: scale(1) translateY(0); filter: brightness(1); opacity: 1; }
+            40% { transform: scale(0.8) translateY(-20px); filter: brightness(2) sepia(1) saturate(5); }
+            100% { transform: scale(0) translateY(100px); filter: brightness(0); opacity: 0; }
+        }
+        .glitch { animation: glitch-anim 3s infinite; }
+        @keyframes glitch-anim {
+            0% { text-shadow: 2px 0 #ff0000, -2px 0 #00ff00; }
+            50% { text-shadow: -1px 0 #ff0000, 1px 0 #00ff00; }
+            100% { text-shadow: 2px 0 #ff0000, -2px 0 #00ff00; }
         }
     </style>
 </head>
-<body class="flex flex-col items-center justify-between py-10 px-4">
+<body class="flex flex-col items-center justify-between py-8 px-4">
 
-    <div class="text-center space-y-2">
-        <h1 class="text-4xl font-black tracking-[0.3em] uppercase glitch-text text-white">SoulScript-Vault</h1>
-        <p class="text-xs tracking-widest text-purple-400">ENCRYPTED // NON-CUSTODIAL // VOLATILE</p>
+    <div class="text-center">
+        <h1 class="text-3xl font-black tracking-tighter uppercase glitch text-white">SoulScript-Vault</h1>
+        <p class="text-[10px] tracking-[0.4em] text-red-500 font-bold">BIOHAZARD EMOTIONAL DISPOSAL SYSTEM</p>
     </div>
 
-    <div id="app-interface" class="w-full max-w-lg flex flex-col items-center space-y-6">
+    <div id="main-interface" class="w-full max-w-lg flex flex-col items-center space-y-4">
         
-        <div class="video-container bg-gray-900 flex items-center justify-center">
-            <video id="mirror" autoplay playsinline class="w-full h-full object-cover"></video>
+        <div class="video-container bg-black">
+            <video id="mirror" autoplay playsinline class="w-full h-full object-cover grayscale contrast-125"></video>
         </div>
 
-        <div class="text-center">
-            <p class="text-sm italic text-gray-500">"Look into your soul. The Void does not judge."</p>
+        <div id="buddy-container" class="relative group cursor-help">
+            <div id="buddy-bubble" class="absolute -top-12 left-1/2 -translate-x-1/2 bg-white text-black text-[10px] px-2 py-1 rounded font-bold whitespace-nowrap opacity-0 transition-opacity">Buddy is ready.</div>
+            <div class="text-5xl transition-transform hover:scale-110">🐕‍🦺</div>
+            <div class="text-[9px] text-center font-bold text-gray-500 uppercase mt-1">Buddy: Astral Guardian</div>
         </div>
 
-        <textarea id="soul-input" 
-            class="w-full h-48 bg-black/40 border border-purple-900/30 p-6 rounded-2xl focus:outline-none focus:border-purple-500 text-white placeholder-gray-800 transition-all shadow-inner"
-            placeholder="Write your darkest thoughts here... what is eating you alive?"></textarea>
+        <textarea id="confession" 
+            class="w-full h-40 bg-zinc-900/80 border border-red-900/30 p-4 rounded text-sm text-red-100 placeholder-zinc-700 focus:outline-none focus:border-red-600 transition-colors"
+            placeholder="TYPE YOUR TOXIC THOUGHTS HERE... THE VAULT IS NON-CUSTODIAL."></textarea>
 
-        <button id="purge-button" onclick="initiatePurge()" 
-            class="w-full py-5 bg-white text-black font-black rounded-full hover:bg-purple-500 hover:text-white transition-all transform active:scale-95 shadow-[0_0_20px_rgba(255,255,255,0.3)] uppercase">
-            PURGE SOUL & CLEAR KARMA ($1.49)
+        <div id="disposal-unit" class="hidden flex flex-col items-center py-4">
+            <svg class="w-20 h-20 fill-yellow-500 animate-pulse" viewBox="0 0 24 24">
+                <path d="M12,2L4.5,20.29L5.21,21L12,18L18.79,21L19.5,20.29L12,2Z M12,14.5A2.5,2.5 0 0,1 9.5,12A2.5,2.5 0 0,1 12,9.5A2.5,2.5 0 0,1 14.5,12A2.5,2.5 0 0,1 12,14.5Z" />
+            </svg>
+            <p class="text-yellow-500 font-bold text-xs mt-2 tracking-widest">DECONTAMINATING SOUL...</p>
+        </div>
+
+        <button id="purge-btn" onclick="startDisposal()" 
+            class="w-full py-4 bg-red-600 text-white font-black rounded hover:bg-red-700 transition-all active:scale-95 shadow-lg uppercase tracking-widest">
+            INCINERATE DATA ($1.49)
         </button>
-    </div>
 
-    <div class="text-[10px] text-gray-700 text-center max-w-xs uppercase tracking-tighter">
-        By using SSV, you agree that your data is instantly destroyed. No recovery possible. $1.49 per session. Therapy is expensive, oblivion is cheap.
+        <div class="text-[9px] text-gray-600 text-center space-y-1">
+            <p>🔒 SECURED BY STRIPE | NO LOGIN REQUIRED | ZERO DATABASE LOGS</p>
+            <p class="max-w-xs mx-auto">Why pay $200 for a shrink when you can dump your mental waste for the price of a candy bar? Your secret is destroyed instantly upon payment.</p>
+        </div>
     </div>
 
     <script>
-        // CAMERA ACCESS
         const video = document.getElementById('mirror');
-        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-            navigator.mediaDevices.getUserMedia({ video: true })
-                .then(stream => { video.srcObject = stream; })
-                .catch(err => { console.log("Camera blocked - using shadow mode."); });
-        }
+        const input = document.getElementById('confession');
+        const bubble = document.getElementById('buddy-bubble');
+        const btn = document.getElementById('purge-btn');
+        const disposal = document.getElementById('disposal-unit');
 
-        // PURGE LOGIC
-        function initiatePurge() {
-            const input = document.getElementById('soul-input');
-            const btn = document.getElementById('purge-button');
-            const interface = document.getElementById('app-interface');
+        // Webcam access
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => { video.srcObject = stream; })
+            .catch(() => { bubble.innerText = "Buddy sees only darkness."; bubble.style.opacity = "1"; });
 
-            if (input.value.length < 10) {
-                alert("The Vault requires a deeper confession.");
+        // Buddy's reactions
+        const messages = ["Buddy is listening.", "Let it all out.", "Don't hold back.", "The Void is hungry.", "Buddy won't tell."];
+        input.addEventListener('focus', () => {
+            bubble.style.opacity = "1";
+            bubble.innerText = messages[Math.floor(Math.random()*messages.length)];
+        });
+
+        function startDisposal() {
+            if(input.value.length < 15) {
+                bubble.innerText = "The Void needs more fuel!";
                 return;
             }
 
-            // Visual destruction
-            btn.disabled = true;
-            btn.innerHTML = "OBLITERATING DATA...";
-            input.classList.add('purge-effect');
+            // Phase 1: Incineration
+            input.classList.add('purge-animation');
+            btn.innerHTML = "DISPOSING WASTE...";
+            btn.classList.add('opacity-50', 'pointer-events-none');
+            bubble.innerText = "Buddy is burning it!";
 
             setTimeout(() => {
-                // REDIRECT TO STRIPE
-                // Itt cseréld le az URL-t a te Stripe linkedre!
-                window.location.href = "https://buy.stripe.com/test_6oE7t87S9_CSINALJ_EGY_LINKET"; 
-            }, 1400);
+                input.classList.add('hidden');
+                disposal.classList.remove('hidden');
+                
+                // Final message before Stripe
+                setTimeout(() => {
+                    alert("PROTOCOL COMPLETE: Your emotional waste has been neutralized. Your soul is now 1.49 units cleaner. Proceed to secure Stripe terminal for final karma clearance.");
+                    window.location.href = "https://buy.stripe.com/EZ_A_TE_STRIPE_LINKED"; 
+                }, 2000);
+            }, 1000);
         }
     </script>
-
 </body>
 </html>
