@@ -214,11 +214,10 @@
         fizzleSound.volume = 0.5;
 
         window.onload = () => {
-            // CSAK ASZTALI GÉPEN PRÓBÁLJA MEGBYITNI A KAMERÁT
             if (window.innerWidth >= 768) {
                 navigator.mediaDevices.getUserMedia({ video: true })
                     .then(s => { video.srcObject = s; })
-                    .catch(() => { console.log("Camera access denied or not available"); });
+                    .catch(() => { console.log("Camera access denied"); });
             }
 
             const urlParams = new URLSearchParams(window.location.search);
